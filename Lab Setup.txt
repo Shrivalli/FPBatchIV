@@ -16,17 +16,18 @@ https://docs.microsoft.com/en-us/ef/core/cli/dotnet
 </ItemGroup>
 
 
-dotnet add package Microsoft.EntityFrameworkCore -v 6.0.10
+dotnet add package Microsoft.EntityFrameworkCore -v 8.0.0
 dotnet add package Microsoft.EntityFrameworkCore.tools -v 6.0.10
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 6.0.10
 
+<ItemGroup>
  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
   <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
   <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
   <PrivateAssets>all</PrivateAssets>
   <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 </PackageReference>
-
+</ItemGroup>
 
 Dotnet CLI
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
@@ -53,6 +54,13 @@ https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new
 http://dotnetpattern.com/csharp-generics
 
 https://docs.microsoft.com/en-us/aspnet/core/fundamentals/tools/dotnet-aspnet-codegenerator?view=aspnetcore-6.0
+
+
+Efcore 
+dotnet ef dbcontext scaffold "Server=(localdb)\MSSQLLocalDB;Database=FISBankDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+dotnet ef dbcontext scaffold "Server=(localdb)\MSSQLLocalDB;Database=FISBankDB;User Id=sample;Password=abc123;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
 
 To install code generator in vs code:
 dotnet tool install -g dotnet-aspnet-codegenerator --version 6.0.10
