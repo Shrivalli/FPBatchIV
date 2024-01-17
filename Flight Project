@@ -1,0 +1,5 @@
+DB:
+
+1. Flights - flightid, name,source, dest,rate
+2. Customers - customerid, name, location
+3. Booking Details - flightid, customerid, bookingdate,noofpassengers,totalcost
