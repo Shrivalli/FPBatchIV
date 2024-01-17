@@ -1,0 +1,23 @@
+dotnet ef dbcontext scaffold "Server=(localdb)\MSSQLLocalDB;Database=FISBankDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=FISBankDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+
+In appsettings.json:(Line no 8)
+ "ConnectionStrings": {
+      "DefaultConnection": "Server=Server=(localdb)\MSSQLLocalDB;Database=Fareportal;Trusted_Connection=True;"
+    },
+
+ Program.cs
+ builder.Services.AddDbContext<FareportalContext>(options =>
+       options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+Controller:
+public static FisbankDbContext db;
+        
+        //Dependency Injection  in constructor
+        public EmployeeController(FisbankDbContext _db)
+        {
+            db=_db;
+        }
