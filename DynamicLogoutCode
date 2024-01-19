@@ -1,8 +1,9 @@
-startup.cs
+Program.cs
 services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-//services.AddSession(s => s.IdleTimeout = TimeSpan.FromMinutes(30));
 
-LoginPartial.cs
+
+LoginPartial.cs -> partial view
+
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 
