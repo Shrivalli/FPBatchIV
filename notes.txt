@@ -1,0 +1,538 @@
+.NET - MS - framework - platform 
+
+.NET Framework - windows OS (4.8)
+.NET core - Windows, Mac, Linux(3.0,5.0,6.0,7.0,8.0)
+
+Types of Applications with .NET core:
+
+1. Desktop Applications - Console Apps(without GUI) , Windows/WPF(GUI)
+2. Web Apps - MVC and API
+3. Mobile Apps  - Xamarin
+
+Jargons: - .NET core comprises of 
+1. BCL( Baseclass Libraries)
+2. Languages - C#, VB.NET, F#, J#
+3. CLR - Common Language Runtime 
+
+source code --> compiled by respective compilers --> MSIL/CIL(Intermediate Language)--> CLR (JIT compiler) --> Native code --> OS
+
+.NET core - .NET SDK
+
+1. To create a new .NET core project: 
+dotnet new <apptype> --name <appname> --version 7.0
+cd appname
+
+2. prjfolder> dotnet build
+
+3. projectfolder> dotnet run --> execute the project
+
+
+Datatypes:
+
+1. Value type-int, float, datetime, boolean, struct, enum
+2. Reference type - string, object, class, delegate, interface
+
+Properties:
+
+To access the private member variables outside the class, we create properties
+
+int eid;
+
+public int Eid
+{
+get{return eid;} //Accessor
+set{eid=value;} //Mutator
+}
+
+1. Individual accessibility to the member variables
+2. Read only permissions can be set. - Assign the value in constructor
+
+
+Function call
+
+1. Call by value 
+2. Call by reference
+
+
+Type conversions:
+1. Implicit 
+2. Explicit
+	1. Boxing - Value type to a reference type 
+	2. UnBoxing
+
+
+Dynamic polymorphism
+Function overriding :
+
+A method of the base class can be redefined in the derived class with the same name.
+
+
+Shape s=new rectangle();
+
+If the base class reference variable is pointing to the memory of derived class and If the method is overrided,
+
+it calls the derived class method
+
+If the base class reference variable is pointing to the memory of derived class and If the method is given with the new keyword,
+
+it calls the base class method
+
+
+Absract methods do not have method implementation. Abstract methods should be inside an abstract class.
+
+An abstract class is a collection of both abstract and non abstract methods.
+
+These classes cannot be instantiated and must be inherited. 
+
+Shape s=new Shape();
+
+
+Interface:
+
+set of rules/specifications for an entity
+
+1. Can one class implement mutiple interfaces - yes
+
+2. Can one interface inherit another interface - yes 
+
+3. can one interface be implemented by multiple classes - yes 
+
+4. can a method be common in both interfaces which are implemented by a class - possible 
+
+5. can an interface contain a method definition - yes (default method definition)
+
+
+Class B:iA{}
+
+Class C:B{}
+
+
+what are static methods? - Even before the object of the class is created, if we want to access any methods (like Main method), we can 
+create them as static methods
+
+
+
+what is a static class - static can contain only static member variables and static methods
+cannot be instantiated and inherited also
+
+what kind of constructor it can have? - static constructor - used to initialize static variables and not instance variables
+
+and what it can contain. - advantages - creating an instance to access properties or methods is not required. 
+
+Directly with the class name we can access the properties or methods of static class
+
+
+Collections:
+
+1. Non - generic collections - ArrayList, Hashtable,stack, queue
+2. generic collections  - List<T>, Dictionary<>, Stack<>, Queue<>, HashSet<>
+
+
+Exceptions:
+
+3 types of Errors:
+1. Syntax error - rectify
+2. Logical error - rectify
+3. Runtime error - Exceptions - cannot be rectified but can only be handled
+
+Exception Handling:
+
+1. try - set of statements which might cause an exception
+2. catch - is the real exception handler
+3. finally - gets executed, whether an exception occurs or not. (write codes which will release the resources)
+
+LINQ:
+
+Language Integrated Query
+
+SQL(Structured Query Language) - query the database
+select * from tablename where condition
+
+Advantages of LINQ:
+
+1. Native Language
+2. Can query any data source(LINQ to XML,objects,entities,sql,collections)
+
+2 syntax of LINQ:
+
+1. Query Syntax 
+var result=from variable in collection
+	   where condition
+	   select variable
+
+
+2. Method Syntax
+var result=collection.Where(x=>x.condition).Select(x=>x).ToList();
+
+Entity Framework Core: (ADO.NET) 
+(ORM) - Object Relation Mapping 
+
+Relation - Table - Attributes
+
+Employee - Eid, Ename,Salary,City, Doj
+
+CRUD operations - Adding a record, Updating a record, Deleting a record, select 
+
+Class Employee - Entities /Context classes
+{
+public int Eid{get;set;}
+....
+}
+
+2 classes:
+
+1. DbContext - Front end database (collection of entites)
+2. DbSet - recordset - select * from table
+DbSet<table>
+
+2 Approaches in EF core:
+
+1. DB first approach - db tables got mapped as entity classes in front end
+2. Code first approach - class are mapped as tables in database (generated)
+
+
+MVC Notes:
+
+Web Applications is of 3 types 
+
+1. WebApp - Website - collection of web pages - Model + View --> directly shared with the customer as response 
+2. Application  - website+business logic - 
+MVC - Model View Controller
+API - Application programming interface - Model + Controller
+
+
+Why MVC?
+
+1. Layer of abstraction by introducing a controller layer
+2. Separation of Concerns - for integration - Models
+
+To create an MVC project:
+
+dotnet new mvc --name firstmvcprj
+
+MVC URL Pattern:
+
+http://localhost:portnumber/Controllername/ActionMethodName --> returns view 
+
+Passing data from controller to view:
+
+1. Scope of ViewData and ViewBag is between the View and the corresponding action method.
+
+ViewBag is a dynamic property - which can hold any datatype and only at the runtime it finalizes its datatype and value.
+
+2. object
+
+
+DB:
+
+1. Flights - flightid, name,source, dest,rate
+2. Customers - customerid, name, location
+3. Booking Details - flightid, customerid, bookingdate,noofpassengers,totalcost
+
+API notes:
+
+1. API returns the data in the form of Json/XML/Bson
+2. It uses only HTTP protocol
+3. In API, View Layer will not be there.
+
+[
+{
+"cid":101,
+"cname":"Ram",
+"salary":56700
+},
+{
+"cid":102,
+"cname":"Sharath",
+"salary":45000
+}
+
+]
+
+HTTP Verbs: - HTTP protocol 
+
+1. HTTPGET - select * from entity - to get the data from the datasource
+2. HTTPPOST - add a new record
+3. HTTPPUT - editing/updating a record
+4. HTTPDELETE - delete 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
